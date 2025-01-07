@@ -1,0 +1,38 @@
+{
+  "header": {
+    "catalogue": "Каталог",
+    "search": "Пошук",
+    "profile": "Профіль",
+    "orders": "Замовлення",
+    "logout": "Вихід"
+  },
+  "auth": {
+    "login": "Увійти",
+    "signup": "Зареєструватися",
+    "password": "Пароль",
+    "repeatPassword": "Повторіть пароль",
+    "name": "Ім'я",
+    "lastname": "Прізвище"
+  },
+  "pages": {
+    "home": {},
+    "catalogue": {
+      "breadCrumbs": "Каталог"
+    },
+    "products": {
+      "filter": {
+        "title": "Фільтр",
+        "price": "Ціна",
+        "brand": "Бренд"
+      },
+      "sort": {
+        "title": "Сортування за:",
+        "relevance": "за релевантністю",
+        "descending": "за спаданням ціни",
+        "ascending": "за зростанням ціни"
+      },
+
+      "breadCrumbs": "Каталог"
+    }
+  }
+}

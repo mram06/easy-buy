@@ -1,0 +1,39 @@
+{
+  "header": {
+    "catalogue": "Catalogue",
+    "search": "Search",
+    "profile": "Profile",
+    "orders": "Orders",
+    "logout": "Logout"
+  },
+  "footer": "",
+  "auth": {
+    "login": "Log in",
+    "signup": "Sign up",
+    "password": "Password",
+    "repeatPassword": "Re-enter password",
+    "name": "Name",
+    "lastname": "Lastname"
+  },
+  "pages": {
+    "home": {},
+    "catalogue": {
+      "breadCrumbs": "Catalogue"
+    },
+    "products": {
+      "filter": {
+        "title": "Filter",
+        "price": "Price",
+        "brand": "Brand"
+      },
+      "sort": {
+        "title": "Sort by:",
+        "relevance": "relevance",
+        "descending": "descending price",
+        "ascending": "ascending price"
+      },
+
+      "breadCrumbs": "Catalogue"
+    }
+  }
+}

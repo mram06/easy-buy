@@ -1,0 +1,104 @@
+<template>
+  <div class="footer">
+    <div class="container">
+      <div class="footer__body">
+        <div class="footer__row">
+          <div class="footer__logo">Easy Buy</div>
+          <div class="footer__info">
+            <div class="footer__categories">
+              <div class="footer__info-title">Категорії</div>
+              <ul class="footer__info-menu">
+                <li>Аудіо</li>
+                <li>Фото та відео</li>
+                <li>Смартфони</li>
+                <li>Побутова техніка</li>
+              </ul>
+            </div>
+            <div class="footer__clients">
+              <div class="footer__info-title">Клієнтам</div>
+              <ul class="footer__info-menu">
+                <li>Доставка і оплата</li>
+                <li>Публічні оферти</li>
+                <li>Акції</li>
+                <li>FAQ</li>
+              </ul>
+            </div>
+            <div class="footer__orders">
+              <div class="footer__info-title">044-444-44-44</div>
+              <div>
+                Оформити замовлення<br />
+                9-00 - 21-00
+              </div>
+            </div>
+            <div class="footer__support">
+              <div class="footer__info-title">044-444-44-44</div>
+              <div>
+                Служба підтримки<br />
+                9-00 - 21-00
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup></script>
+
+<style lang="scss" scoped>
+.footer {
+  background: rgb(49, 49, 49);
+  &__body {
+    padding: 48px 63px 48px 108px;
+
+    color: white;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1 auto;
+
+    max-width: 950px;
+    &-title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    &-menu {
+      margin: 8px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+
+  &__categories {
+  }
+
+  &__clients {
+  }
+
+  &__orders {
+    :nth-child(2) {
+      margin: 8px 0 0 0;
+    }
+  }
+
+  &__support {
+    :nth-child(2) {
+      margin: 8px 0 0 0;
+    }
+  }
+}
+</style>
