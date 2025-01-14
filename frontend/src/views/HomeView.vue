@@ -55,12 +55,12 @@
                 <products-panel :goods-list="productsList" />
               </div>
             </section>
-            <section class="goods">
+            <!-- <section class="goods">
               <div class="goods__body">
                 <h2 class="goods__title">Краща ціна</h2>
                 <products-panel :goods-list="products" />
               </div>
-            </section>
+            </section> -->
           </div>
         </div>
       </div>
