@@ -30,6 +30,9 @@ onMounted(() => {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
+    @media only screen and (max-width: 990px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 </style>

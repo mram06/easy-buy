@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__body">
+          <div class="header__logo">
+            <img src="logo.png" />
+            <div>Easy Buy</div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <h2>Замовлення № 242</h2>
+        <div>Доставка: самовивіз</div>
+        <div>Оплата: карткою</div>
+        <div class="table">
+          <div class="table__row table__head">
+            <div>№</div>
+            <div>Назва товару</div>
+            <div>Кількість</div>
+            <div>Ціна за одиницю</div>
+          </div>
+          <div class="table__row">
+            <div>1</div>
+            <div>Гра Red Dead Redemption 2 для PS4 (Blu-ray диск)</div>
+            <div>1</div>
+            <div>1200</div>
+          </div>
+          <div class="table__row">
+            <div>1</div>
+            <div>Гра Red Dead Redemption 2 для PS4 (Blu-ray диск)</div>
+            <div>1</div>
+            <div>1200</div>
+          </div>
+          <div class="table__row table__total">
+            <div>Всього:</div>
+            <div>2400</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+  <style>
+    body {
+      font-family: "Roboto";
+    }
+    .header__body {
+    }
+    .header__logo {
+      font-size: 32px;
+      font-weight: 700;
+      display: flex;
+      gap: 8px;
+    }
+    .header__logo img {
+      width: 32px;
+      height: 32px;
+    }
+    .table {
+      border-top: 1px solid black;
+    }
+    .table__head {
+      background: rgb(240, 240, 240);
+    }
+    .table__row {
+      display: grid;
+      grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr;
+      border-left: 1px solid black;
+    }
+    .table__row div {
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+
+      padding: 8px;
+    }
+    .table__total {
+      border: none;
+    }
+    .table__total div {
+      font-size: 24px;
+      font-weight: bold;
+      border: none;
+    }
+    .table__total div:first-child {
+      grid-column-start: 3;
+      text-align: end;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</html>

@@ -51,13 +51,21 @@
   background: rgb(49, 49, 49);
   &__body {
     padding: 48px 63px 48px 108px;
-
     color: white;
+
+    @media only screen and (max-width: 990px) {
+      padding: 48px 10px;
+    }
   }
 
   &__row {
     display: flex;
     justify-content: space-between;
+    gap: 32px;
+
+    @media only screen and (max-width: 990px) {
+      flex-direction: column;
+    }
   }
 
   &__logo {
@@ -69,8 +77,13 @@
     display: flex;
     justify-content: space-between;
     flex: 1 1 auto;
-
+    gap: 32px;
     max-width: 950px;
+    
+    @media only screen and (max-width: 990px) {
+      flex-wrap: wrap;
+    }
+
     &-title {
       font-size: 24px;
       font-weight: 600;

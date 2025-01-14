@@ -3,7 +3,6 @@ export default [
     id: 1,
     title:
       'Apple MacBook Air M3 Chip 15" 8/256GB Space Gray (MRYM3) 2024 fdfsfsdnfkjsdkfsdkjhfgakjhsfkgsjhdgfkhjsgfkjshd',
-
     price: 64499,
   },
   {

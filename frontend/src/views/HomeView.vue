@@ -21,12 +21,30 @@
                     params: { category: category.params, id: category.id },
                   })
                 "
+                @mouseover="currentCategoryId = category.id"
                 class="category"
               >
-                <div class="category__label"><img :src="category.labelSrc" /></div>
+                <div class="category__label">
+                  <font-awesome-icon :icon="['fas', category.labelSrc]" />
+                </div>
                 <div class="category__title">{{ category.title }}</div>
               </div>
-              <div class="menu">menu</div>
+              <div class="menu">
+                <div class="menu__body">
+                  <div class="menu__category">
+                    <div class="menu__category-img">
+                      <img :src="categoryObj.imgSrc" />
+                    </div>
+                    <div
+                      v-for="subcategory in categoryObj.subcategories"
+                      :key="subcategory.id"
+                      class="menu__subcategory-title"
+                    >
+                      {{ subcategory.title }}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </aside>
           </div>
           <div class="hero__main">
@@ -58,22 +76,32 @@ import { useRouter } from 'vue-router'
 import { computed, onMounted, ref, watch } from 'vue'
 import products from '@/constants/products'
 import { useProductsStore } from '@/stores/modules/productsStore'
+import { useCategoriesStore } from '@/stores/modules/categoriesStore'
 
 const router = useRouter()
 
 const asideOpened = ref(false)
+const currentCategoryId = ref(null)
 
-watch(
-  () => asideOpened.value,
-  (newValue) => {
-    console.log(newValue)
-  },
-)
+// watch(
+//   () => currentCategoryId.value,
+//   (newValue) => {
+//     console.log(newValue)
+//   },
+// )
 
 const productsStore = useProductsStore()
 const productsList = computed(() => productsStore.productsList)
+const categoriesStore = useCategoriesStore()
+const categoryObj = computed(
+  () =>
+    categoriesStore.categoriesList.filter(
+      (category) => category.id == currentCategoryId.value,
+    )[0] || {},
+)
 onMounted(() => {
   productsStore.loadNoveltyList()
+  categoriesStore.loadCategoriesListWithSubcategories()
 })
 </script>
 
@@ -87,6 +115,9 @@ onMounted(() => {
     flex: 1 1;
   }
   &__body {
+    @media only screen and (max-width: 990px) {
+      display: none;
+    }
   }
 
   &__categories {
@@ -126,6 +157,11 @@ onMounted(() => {
   align-items: center;
   gap: 4px;
   &__label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
   }
 
   &__title {
@@ -134,9 +170,7 @@ onMounted(() => {
     background: rgb(217, 217, 217);
   }
 }
-.menu {
-  display: none;
-}
+
 .goods {
   &__body {
     margin: 48px 0 0 0;
@@ -146,6 +180,29 @@ onMounted(() => {
   }
 
   &__title {
+  }
+}
+.menu {
+  display: none;
+  &__body {
+    padding: 16px;
+  }
+
+  &__category {
+    &-img {
+      width: 100px;
+      height: 100px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &-title {
+    }
+  }
+
+  &__subcategory-title {
   }
 }
 </style>

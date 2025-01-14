@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
-    <div class="auth">
-      <div class="auth__body">
+    <div @click="$emit('authClose')" class="auth">
+      <div @click.stop class="auth__body">
         <div @click="$emit('authClose')" class="auth__close"></div>
         <div class="auth__method">
           <button
@@ -104,9 +104,11 @@ async function onAuth() {
     console.log(authStore.authError)
     console.log(authStore.authResult)
 
-    if (authStore.authResult.value) console.log(authStore.authResult.value)
-  } else if (isDataEntered.value && selectedMethod.value === 'signup')
-    authStore.signup(userData.value)
+    if (authStore.authResult?.value) console.log(authStore.authResult.value)
+  } else if (isDataEntered.value && selectedMethod.value === 'signup') {
+    await authStore.signup(userData.value)
+    if (!authStore.authError) emit('authClose')
+  }
 }
 
 const errorMessage = computed(() => {

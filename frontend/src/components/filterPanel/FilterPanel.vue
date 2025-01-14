@@ -4,7 +4,7 @@
       <h3>{{ $t('pages.products.filter.title') }}</h3>
       <div class="filter__category price">
         <div class="filter__category-title">{{ $t('pages.products.filter.price') }}</div>
-        <price-range v-if="!productsStore.isLoading" />
+        <price-range />
       </div>
       <div :class="['filter__category', { open: openedFeatures.includes(-1) }]">
         <div class="filter__category-title">{{ $t('pages.products.filter.brand') }}</div>

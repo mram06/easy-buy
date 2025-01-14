@@ -147,8 +147,6 @@ export const useProductsStore = defineStore('products', () => {
         response.data.result?.forEach((product) => {
           product.imgSrc = apiUploads + product.imgSrc
         })
-        console.log(response)
-
         productsList.value = response.data.result
       })
       .catch((error) => {

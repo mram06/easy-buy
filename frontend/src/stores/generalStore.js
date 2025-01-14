@@ -13,6 +13,9 @@ export const useGeneralStore = defineStore('general', () => {
     error.value = value
     router.push({ name: 'error' })
   }
+  function getPriceWithSpace(price) {
+    return price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  }
 
-  return { isLoading, error, setError }
+  return { isLoading, error, setError, getPriceWithSpace }
 })

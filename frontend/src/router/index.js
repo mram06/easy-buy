@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { isAdmin } from './helpers'
+import { useGeneralStore } from '@/stores/generalStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +94,16 @@ const router = createRouter({
       component: () => import('@/views/ProfileView.vue'),
     },
     {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('@/views/CheckoutView.vue'),
+    },
+    {
+      path: '/order',
+      name: 'order',
+      component: () => import('@/views/OrderComplete.vue'),
+    },
+    {
       path: '/error',
       name: 'error',
       component: () => import('@/views/ErrorPage.vue'),
@@ -104,7 +115,9 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta?.requiresAdminRules) {
     const admin = await isAdmin()
     if (!admin) {
-      return next({ name: 'home' })
+      const generalStore = useGeneralStore()
+      generalStore.setError({ response: { status: 403, statusText: 'Access denied' } })
+      return next({ name: 'error' })
     }
   }
   next()

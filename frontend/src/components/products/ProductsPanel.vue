@@ -6,7 +6,7 @@
     <template v-else-if="productsStore.productsList?.length">
       <product-item v-for="good in goodsList" :key="good.id" :good="good" />
     </template>
-    <template v-else> <div>За запитом нічого не знайдено</div> </template>
+    <template v-else> <div class="not-found">За запитом нічого не знайдено :(</div> </template>
     <pagination-component :total-count="productsStore.totalCount" />
   </div>
 </template>
@@ -32,8 +32,22 @@ defineProps({
   display: grid;
   grid-template-columns: repeat(5, minMax(200px, 1fr));
   grid-template-rows: 355px;
-
   gap: 24px;
   flex: 1 1;
+
+  @media only screen and (max-width: 1435px) {
+    grid-template-columns: repeat(4, minMax(200px, 1fr));
+  }
+  @media only screen and (max-width: 1215px) {
+    grid-template-columns: repeat(3, minMax(200px, 1fr));
+  }
+  @media only screen and (max-width: 990px) {
+    grid-template-columns: repeat(2, minMax(200px, 1fr));
+  }
+}
+.not-found {
+  font-size: 24px;
+  grid-column-start: 1;
+  grid-column-end: 6;
 }
 </style>

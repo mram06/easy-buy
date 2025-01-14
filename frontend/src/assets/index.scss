@@ -7,7 +7,7 @@ body {
   font-family: 'Roboto', serif;
   font-weight: 400;
   line-height: 120%;
-  font-size: 16px;
+  font-size: 1rem;
 
   background-color: #f0f0f0;
   overflow-x: hidden;
@@ -29,13 +29,13 @@ h3 {
   line-height: 120%;
 }
 h1 {
-  font-size: 32px;
+  font-size: 2rem;
 }
 h2 {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 h3 {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 a {
   display: block;
@@ -59,6 +59,9 @@ p {
   flex: 1 1 auto;
 
   padding: 32px;
+  @media only screen and (max-width: 990px) {
+    padding: 10px;
+  }
 }
 label {
   display: block;

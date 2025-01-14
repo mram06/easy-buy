@@ -4,7 +4,7 @@
       <h1>
         <template v-if="generalStore.error?.response">
           {{ generalStore.error?.response?.status }} -
-          {{ useGeneralStore.error?.response?.statusText }}
+          {{ generalStore.error?.response?.statusText }}
         </template>
         <template v-else> 503 - Service Unavailable</template>
       </h1>
@@ -15,8 +15,17 @@
 <script setup>
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import { useGeneralStore } from '@/stores/generalStore'
-import { onUnmounted } from 'vue'
+
 const generalStore = useGeneralStore()
+
+defineProps({
+  errorCode: {
+    type: Number,
+  },
+  errorText: {
+    type: String,
+  },
+})
 </script>
 
 <style lang="scss" scoped></style>

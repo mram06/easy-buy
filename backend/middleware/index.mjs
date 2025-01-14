@@ -32,6 +32,7 @@ const middleware = (app) => {
 
   // Middleware для обробки статичних файлів з директорії public
   app.use(express.static(path.join(__dirname, "../public")));
+  app.use(express.static(path.join(__dirname, "../views")));
 
   // Middleware для обробки статичних файлів з директорії uploads
   app.use("/uploads", express.static(path.join(__dirname, "../uploads")));

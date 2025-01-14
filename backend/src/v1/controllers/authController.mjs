@@ -76,7 +76,7 @@ class AuthController {
         },
         req.headers
       );
-      res.json({
+      res.status(200).json({
         result: "Authorized",
         token,
         foundUser: { ...foundUser, password: undefined },

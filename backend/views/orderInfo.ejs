@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <div class="header__body">
+          <div class="header__logo">
+            <div>Easy Buy</div>
+          </div>
+        </div>
+      </header>
+      <main>
+        <h2>Замовлення № <%= orderInfo[0].order_id %></h2>
+        <p>
+          Доставка: <% if(orderInfo[0].delivery_type === 'pickup') { %>
+          самовивіз <% } else if(orderInfo[0].delivery_type === 'courier') { %>
+          кур'єром <% } else if(orderInfo[0].delivery_type === 'novapost') { %>
+          Новою поштою <% } %>
+        </p>
+
+        <p>
+          Оплата: <% if(orderInfo[0].payment_type === 'cash') { %> готівкою <% }
+          else if(orderInfo[0].payment_type === 'card-pickup') { %> карткою при
+          отриманні <% } else if(orderInfo[0].payment_type === 'card') { %>
+          карткою <% } %>
+        </p>
+
+        <table class="table">
+          <thead class="table__head">
+            <tr>
+              <th>№</th>
+              <th>Назва товару</th>
+              <th>Кількість</th>
+              <th>Ціна за одиницю</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% orderInfo.forEach((item, i) => { %>
+            <tr class="table__row">
+              <td><%= ++i %></td>
+              <td><%= item.title_ua %></td>
+              <td><%= item.quantity %></td>
+              <td><%= item.price %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+          <tfoot>
+            <tr class="table__total">
+              <td colspan="3" style="text-align: right">Всього:</td>
+              <td><%= orderInfo[0].total_sum %></td>
+            </tr>
+          </tfoot>
+        </table>
+      </main>
+    </div>
+  </body>
+  <style>
+    body {
+      font-family: "Roboto";
+    }
+    .header__body {
+    }
+    .header__logo {
+      font-size: 32px;
+      font-weight: 700;
+      display: flex;
+      gap: 8px;
+    }
+    .header__logo img {
+      width: 32px;
+      height: 32px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background: rgb(240, 240, 240);
+    }
+    .table__total td {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</html>

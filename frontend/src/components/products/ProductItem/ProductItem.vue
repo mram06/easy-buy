@@ -1,40 +1,52 @@
 <template>
-  <router-link :to="{ name: 'productAbout', params: { id: good.id } }">
-    <div class="item">
-      <div class="item__body">
-        <div class="item__img"><img :src="good.imgSrc" /></div>
-        <div class="item__title">{{ good.title }}</div>
-        <div class="item__row">
-          <div class="item__prices">
-            <template v-if="good.oldPrice">
-              <div class="item__prices-oldprice">{{ good.oldPrice }} ₴</div>
-              <div class="item__prices-price red">{{ good.price }} ₴</div>
-            </template>
-            <template v-else>
-              <div class="item__prices-price">{{ good.price }} ₴</div>
-            </template>
-          </div>
-          <button class="item__btn"></button>
+  <div @click="toItem" class="item">
+    <div class="item__body">
+      <div class="item__img"><img :src="good.imgSrc" /></div>
+      <div class="item__title">{{ good.title }}</div>
+      <div class="item__row">
+        <div class="item__prices">
+          <template v-if="good.oldPrice">
+            <div class="item__prices-oldprice">{{ getPriceWithSpace(good.oldPrice) }} ₴</div>
+            <div class="item__prices-price red">{{ getPriceWithSpace(good.price) }} ₴</div>
+          </template>
+          <template v-else>
+            <div class="item__prices-price">{{ getPriceWithSpace(good.price) }} ₴</div>
+          </template>
         </div>
+        <button @click.stop @click="cartsStore.addToCart(good.id)" class="item__btn"></button>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script setup>
-defineProps({
+import { useGeneralStore } from '@/stores/generalStore'
+import { useCartsStore } from '@/stores/modules/cartsStore'
+import { useRouter } from 'vue-router'
+
+const props = defineProps({
   good: {
     type: Object,
     required: true,
   },
 })
+
+const cartsStore = useCartsStore()
+const { getPriceWithSpace } = useGeneralStore()
+
+const router = useRouter()
+function toItem() {
+  router.push({ name: 'productAbout', params: { id: props.good.id } })
+}
 </script>
 
 <style lang="scss" scoped>
 .item {
   &__body {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+
     justify-content: flex-start;
     max-height: 355px;
     height: 355px;
@@ -51,9 +63,8 @@ defineProps({
     max-width: 204px;
     max-height: 204px;
     overflow: hidden;
+    align-self: center;
 
-    display: flex;
-    align-items: center;
     img {
       width: 100%;
       height: 100%;

@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    max-width: 236px;
     max-height: 355px;
     height: 100%;
 
@@ -34,7 +33,6 @@
   &__img {
     width: 100%;
     overflow: hidden;
-    max-width: 204px;
     max-height: 204px;
     width: 100%;
     height: 100%;

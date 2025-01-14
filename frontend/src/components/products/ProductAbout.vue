@@ -9,7 +9,8 @@
           <div class="item__body">
             <div class="item__title">{{ productObj.title }}</div>
             <div class="item__price">
-              {{ productObj.price }} ₴ <button class="item__btn primary">Купити</button>
+              {{ getPriceWithSpace(productObj.price) }} ₴
+              <button @click="onBuy(productObj.id)" class="item__btn primary">Купити</button>
             </div>
             <div class="item__stock"><span /> Є в наявності</div>
           </div>
@@ -32,6 +33,16 @@ defineProps({
     default: () => ({}),
   },
 })
+import { useGeneralStore } from '@/stores/generalStore'
+import { useCartsStore } from '@/stores/modules/cartsStore'
+
+const cartsStore = useCartsStore()
+function onBuy(id) {
+  console.log(id)
+  cartsStore.addToCart(id)
+}
+
+const { getPriceWithSpace } = useGeneralStore()
 </script>
 
 <style lang="scss" scoped>
@@ -50,8 +61,7 @@ defineProps({
     border-radius: 12px;
     background: white;
     padding: 16px;
-    min-height: 640px;
-    height: 100%;
+    height: 640px;
     img {
       width: 100%;
       height: 100%;

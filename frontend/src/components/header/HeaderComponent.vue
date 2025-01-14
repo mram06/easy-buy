@@ -2,7 +2,11 @@
   <header class="header">
     <div class="container">
       <div class="header__body">
-        <router-link to="/"><span class="header__logo">Easy Buy</span></router-link>
+        <router-link to="/"
+          ><div class="header__logo">
+            <img src="@/assets/logo.png" /> <span>Easy Buy</span>
+          </div></router-link
+        >
         <div class="header__middle">
           <button @click="toCatalogue" class="header__catalogue-btn">
             {{ $t('header.catalogue') }}
@@ -32,31 +36,46 @@
               <div @click="authStore.logout">{{ $t('header.logout') }}</div>
             </div>
           </div>
-          <div class="header__tools-cart"><img src="@/assets/icons/cart.svg" /></div>
+          <div @click="toCart" class="header__tools-cart">
+            <img src="@/assets/icons/cart.svg" />
+            <span v-if="cartsStore.itemsCount">{{ cartsStore.itemsCount }}</span>
+          </div>
         </div>
       </div>
     </div>
   </header>
-  <auth-popup v-if="popupOpened" @auth-close="popupOpened = false" />
+  <auth-popup v-if="authOpened" @auth-close="authOpened = false" />
+  <cart-popup v-if="cartOpened" @cart-close="cartOpened = false" />
 </template>
 
 <script setup>
 import AuthPopup from '../auth/AuthPopup.vue'
+import CartPopup from '@/components/cart/CartPopup.vue'
 import { useAuthStore } from '@/stores/modules/authStore'
 import { useUsersStore } from '@/stores/modules/usersStore'
+import { useCartsStore } from '@/stores/modules/cartsStore'
+
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
 const usersStore = useUsersStore()
 
-const popupOpened = ref(false)
+const authOpened = ref(false)
+const cartOpened = ref(false)
+
 const profileDropdownOpened = ref(false)
 
 function toProfile() {
   if (!usersStore.user) {
-    popupOpened.value = true
+    authOpened.value = true
   } else profileDropdownOpened.value = !profileDropdownOpened.value
+}
+function toCart() {
+  if (!usersStore.user) authOpened.value = true
+  else {
+    cartOpened.value = true
+  }
 }
 
 const search = ref(null)
@@ -83,12 +102,17 @@ function changeLocale() {
 onMounted(() => {
   authStore.loginWithCredential()
 })
+
+const cartsStore = useCartsStore()
 </script>
 
 <style lang="scss" scoped>
 .header {
   padding: 0 32px;
   background: rgb(49, 49, 49);
+  @media only screen and (max-width: 990px) {
+    padding: 0 10px;
+  }
   &__body {
     display: flex;
     justify-content: space-between;
@@ -102,9 +126,18 @@ onMounted(() => {
   }
 
   &__logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     color: rgb(255, 255, 255);
     font-size: 32px;
     font-weight: bold;
+    img {
+      height: 38px;
+    }
+    span {
+      text-wrap: nowrap;
+    }
   }
 
   &__middle {
@@ -136,6 +169,9 @@ onMounted(() => {
       height: 20px;
       display: inline-block;
       content: url('@/assets/icons/catalogue.svg');
+    }
+    @media only screen and (max-width: 770px) {
+      display: none;
     }
   }
 
@@ -209,14 +245,36 @@ onMounted(() => {
         pointer-events: none;
         transition: transform 0.3s ease;
       }
+      @media only screen and (max-width: 990px) {
+        display: none;
+      }
     }
 
     &-account {
       cursor: pointer;
       position: relative;
+      @media only screen and (max-width: 990px) {
+        display: none;
+      }
     }
 
     &-cart {
+      cursor: pointer;
+      position: relative;
+      span {
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        font-size: 10px;
+        color: white;
+        padding: 5px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+
+        background-color: #ff4848;
+        border-radius: 50%;
+      }
     }
   }
 }
