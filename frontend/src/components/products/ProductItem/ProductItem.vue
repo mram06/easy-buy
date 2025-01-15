@@ -48,7 +48,6 @@ function toItem() {
     flex-direction: column;
 
     justify-content: flex-start;
-    max-height: 355px;
     height: 355px;
 
     padding: 16px;

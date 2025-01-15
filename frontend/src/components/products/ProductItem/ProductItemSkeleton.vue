@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    max-height: 355px;
-    height: 100%;
+
+    height: 355px;
 
     padding: 16px;
 

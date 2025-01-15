@@ -40,7 +40,16 @@
                       :key="subcategory.id"
                       class="menu__subcategory-title"
                     >
-                      {{ subcategory.title }}
+                      <router-link
+                        :to="{
+                          name: 'subcategory',
+                          params: {
+                            subcategory: subcategory.title_en.toLowerCase().split(' ').join('-'),
+                            id: subcategory.id,
+                          },
+                        }"
+                        >{{ subcategory.title }}</router-link
+                      >
                     </div>
                   </div>
                 </div>
@@ -146,7 +155,9 @@ onMounted(() => {
   &__banner {
     height: 480px;
     border-radius: 12px;
-    background: rgb(217, 217, 217);
+    background:
+      url('@/assets/img/banner1.png') 0 / auto 100% no-repeat,
+      rgb(217, 217, 217);
   }
 }
 .category {
@@ -203,6 +214,9 @@ onMounted(() => {
   }
 
   &__subcategory-title {
+    a:hover {
+      color: #ff4848;
+    }
   }
 }
 </style>

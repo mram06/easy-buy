@@ -135,8 +135,12 @@ const cartsStore = useCartsStore()
     img {
       height: 38px;
     }
+
     span {
       text-wrap: nowrap;
+      @media only screen and (max-width: 450px) {
+        display: none;
+      }
     }
   }
 

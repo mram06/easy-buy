@@ -57,6 +57,8 @@ onMounted(() => {
 
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    row-gap: 16px;
     & li:first-child {
       width: 24px;
       height: 24px;

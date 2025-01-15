@@ -95,6 +95,9 @@ if (route.params.id && route.params.subcategory) {
 
 <style lang="scss" scoped>
 .filter {
+  @media only screen and (max-width: 700px) {
+    display: none;
+  }
   &__body {
     max-width: 236px;
     border-radius: 12px;

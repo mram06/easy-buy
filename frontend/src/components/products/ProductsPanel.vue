@@ -30,19 +30,19 @@ defineProps({
 <style lang="scss" scoped>
 .products__container {
   display: grid;
-  grid-template-columns: repeat(5, minMax(200px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 355px;
   gap: 24px;
   flex: 1 1;
 
   @media only screen and (max-width: 1435px) {
-    grid-template-columns: repeat(4, minMax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
   }
   @media only screen and (max-width: 1215px) {
-    grid-template-columns: repeat(3, minMax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
   @media only screen and (max-width: 990px) {
-    grid-template-columns: repeat(2, minMax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 .not-found {
