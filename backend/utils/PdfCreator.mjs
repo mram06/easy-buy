@@ -19,31 +19,35 @@ import puppeteer from "puppeteer";
 import fs from "fs";
 
 class PdfCreator {
+  constructor() {
+    this.browser = null;
+  }
+
+  static async init() {
+    if (!this.browser) {
+      this.browser = await puppeteer.launch();
+    }
+  }
+
   static async generatePdf(outputPath, templatePath, data) {
-    // Рендеринг HTML з шаблону EJS
+    await this.init();
     const html = await ejs.renderFile(templatePath, data);
+    const page = await this.browser.newPage();
 
-    // Запуск браузера Puppeteer
-    const browser = await puppeteer.launch();
-
-    // Створення нової сторінки
-    const page = await browser.newPage();
-
-    // Завантаження рендереного HTML в сторінку Puppeteer
     await page.setContent(html);
 
-    // Генерація PDF
     const pdfBuffer = await page.pdf();
-
-    // Запис PDF у файл
 
     await fs.promises.writeFile(outputPath, pdfBuffer);
 
-    // Закриття тільки поточної вкладки (сторінки)
     await page.close();
+  }
 
-    // Повертаємо шлях до збереженого PDF, як у початковій логіці
-    return { outputPath };
+  static async close() {
+    if (this.browser) {
+      await this.browser.close();
+      this.browser = null;
+    }
   }
 }
 
