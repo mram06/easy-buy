@@ -6,34 +6,34 @@
           <div class="footer__logo">Easy Buy</div>
           <div class="footer__info">
             <div class="footer__categories">
-              <div class="footer__info-title">Категорії</div>
+              <div class="footer__info-title">{{ $t('footer.categories.title') }}</div>
               <ul class="footer__info-menu">
-                <li>Аудіо</li>
-                <li>Фото та відео</li>
-                <li>Смартфони</li>
-                <li>Побутова техніка</li>
+                <li>{{ $t('footer.categories.audio') }}</li>
+                <li>{{ $t('footer.categories.photoAndVideo') }}</li>
+                <li>{{ $t('footer.categories.smartphones') }}</li>
+                <li>{{ $t('footer.categories.householdAppliances') }}</li>
               </ul>
             </div>
             <div class="footer__clients">
-              <div class="footer__info-title">Клієнтам</div>
+              <div class="footer__info-title">{{ $t('footer.client.title') }}</div>
               <ul class="footer__info-menu">
-                <li>Доставка і оплата</li>
-                <li>Публічні оферти</li>
-                <li>Акції</li>
+                <li>{{ $t('footer.client.deliveryAndPayment') }}</li>
+                <li>{{ $t('footer.client.publicOffer') }}</li>
+                <li>{{ $t('footer.client.specialOffers') }}</li>
                 <li>FAQ</li>
               </ul>
             </div>
             <div class="footer__orders">
               <div class="footer__info-title">044-444-44-44</div>
               <div>
-                Оформити замовлення<br />
+                {{ $t('footer.makeOrder') }}<br />
                 9-00 - 21-00
               </div>
             </div>
             <div class="footer__support">
               <div class="footer__info-title">044-444-44-44</div>
               <div>
-                Служба підтримки<br />
+                {{ $t('footer.support') }}<br />
                 9-00 - 21-00
               </div>
             </div>
@@ -71,6 +71,7 @@
   &__logo {
     font-size: 32px;
     font-weight: 700;
+    text-wrap: nowrap;
   }
 
   &__info {
@@ -79,9 +80,10 @@
     flex: 1 1 auto;
     gap: 32px;
     max-width: 950px;
-    
+
     @media only screen and (max-width: 990px) {
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minMax(180px, 1fr));
     }
 
     &-title {

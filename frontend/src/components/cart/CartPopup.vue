@@ -2,22 +2,24 @@
   <div @click="$emit('cartClose')" class="cart">
     <div @click.stop class="cart__body">
       <div @click="$emit('cartClose')" class="cart__close"></div>
-      <div class="cart__title">Кошик</div>
+      <div class="cart__title">{{ $t('components.cart.title') }}</div>
 
       <template v-if="cartItems?.length">
         <cart-panel :cart-items="cartItems" />
       </template>
 
       <template v-else>
-        <div class="cart__title" style="text-align: center">Кошик порожній :(</div>
+        <div class="cart__title" style="text-align: center">{{ $t('components.cart.empty') }}</div>
       </template>
       <div class="cart__bottom">
         <button @click="$emit('cartClose')" class="cart__bottom-continue primary">
-          Продовжити покупки
+          {{ $t('components.cart.continueShopping') }}
         </button>
-        <div class="cart__summary">Разом: {{ getPriceWithSpace(cartsStore.totalCartSum) }} ₴</div>
+        <div class="cart__summary">
+          {{ $t('components.cart.total') }} {{ getPriceWithSpace(cartsStore.totalCartSum) }} ₴
+        </div>
         <button @click="$router.push({ name: 'checkout' })" class="cart__bottom-checkout primary">
-          Оформити замовлення
+          {{ $t('components.cart.makeOrder') }}
         </button>
       </div>
     </div>

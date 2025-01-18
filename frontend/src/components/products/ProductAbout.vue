@@ -10,13 +10,15 @@
             <div class="item__title">{{ productObj.title }}</div>
             <div class="item__price">
               {{ getPriceWithSpace(productObj.price) }} ₴
-              <button @click="onBuy(productObj.id)" class="item__btn primary">Купити</button>
+              <button @click="onBuy(productObj.id)" class="item__btn primary">
+                {{ $t('pages.product.btn') }}
+              </button>
             </div>
-            <div class="item__stock"><span /> Є в наявності</div>
+            <div class="item__stock"><span /> {{ $t('pages.product.inStock') }}</div>
           </div>
           <div class="description">
             <div class="description__body">
-              <div class="description__title">Опис товару</div>
+              <div class="description__title">{{ $t('pages.product.description') }}</div>
               <p class="description__text">{{ productObj.description }}</p>
             </div>
           </div>
@@ -66,7 +68,7 @@ const { getPriceWithSpace } = useGeneralStore()
     padding: 16px;
     height: 640px;
     @media only screen and (max-width: 700px) {
-      height: auto;
+      height: 320px;
     }
     img {
       width: 100%;

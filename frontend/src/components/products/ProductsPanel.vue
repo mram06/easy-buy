@@ -6,7 +6,9 @@
     <template v-else-if="productsStore.productsList?.length">
       <product-item v-for="good in goodsList" :key="good.id" :good="good" />
     </template>
-    <template v-else> <div class="not-found">За запитом нічого не знайдено :(</div> </template>
+    <template v-else>
+      <div class="not-found">{{ $t('pages.products.notFound') }}</div>
+    </template>
     <pagination-component :total-count="productsStore.totalCount" />
   </div>
 </template>
@@ -43,6 +45,7 @@ defineProps({
   }
   @media only screen and (max-width: 990px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
 }
 .not-found {

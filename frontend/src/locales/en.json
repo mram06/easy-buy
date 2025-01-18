@@ -6,7 +6,23 @@
     "orders": "Orders",
     "logout": "Logout"
   },
-  "footer": "",
+  "footer": {
+    "categories": {
+      "title": "Categories",
+      "audio": "Audio",
+      "photoAndVideo": "Photo and video",
+      "smartphones": "Smartphones",
+      "householdAppliances": "Household appliances"
+    },
+    "client": {
+      "title": "For clients",
+      "deliveryAndPayment": "Delivery and payment",
+      "publicOffer": "Public offers",
+      "specialOffers": "Special offers"
+    },
+    "makeOrder": "Make order",
+    "support": "Support service"
+  },
   "auth": {
     "login": "Log in",
     "signup": "Sign up",
@@ -16,7 +32,9 @@
     "lastname": "Lastname"
   },
   "pages": {
-    "home": {},
+    "home": {
+      "novelty": "Novelties"
+    },
     "catalogue": {
       "breadCrumbs": "Catalogue"
     },
@@ -32,8 +50,52 @@
         "descending": "descending price",
         "ascending": "ascending price"
       },
-
+      "notFound": "No results found for your query :(",
       "breadCrumbs": "Catalogue"
+    },
+    "product": {
+      "about": "About the product",
+      "features": "Features",
+      "btn": "Buy",
+      "inStock": "In stock",
+      "description": "Product description"
+    },
+    "checkout": {
+      "title": "Checkout",
+      "delivery": {
+        "title": "Delivery",
+        "pickup": "Pickup",
+        "courier": "Courier delivery",
+        "novapost": "Nova Post"
+      },
+      "payment": {
+        "title": "Payment",
+        "cash": "Cash",
+        "cardPickup": "Card upon receipt",
+        "card": "Card"
+      },
+      "total": {
+        "title": "Total",
+        "itemsWithSum": "items for the amount",
+        "deliveryCost": "Delivery cost",
+        "summary": "To pay",
+        "free": "free",
+        "byPostPrices": "according to carrier rates",
+        "btn": "Confirm order"
+      }
+    },
+    "orderComplete": {
+      "title": "Thank you for your order!",
+      "reference": "Order number"
+    }
+  },
+  "components": {
+    "cart": {
+      "title": "Cart",
+      "empty": "Cart is empty :(",
+      "continueShopping": "Continue shopping",
+      "total": "Total",
+      "makeOrder": "Make order"
     }
   }
 }

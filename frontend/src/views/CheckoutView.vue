@@ -3,62 +3,64 @@
     <div class="checkout">
       <div class="container">
         <div class="checkout__body">
-          <h2>Оформлення замовлення</h2>
+          <h2>{{ $t('pages.checkout.title') }}</h2>
           <div class="checkout__row">
             <div class="checkout__items">
               <cart-panel :cart-items="cartItems" />
               <div class="delivery">
-                <div class="delivery__title">Доставка</div>
+                <div class="delivery__title">{{ $t('pages.checkout.delivery.title') }}</div>
                 <div class="delivery__options">
                   <label>
                     <input v-model="deliveryType" value="pickup" type="radio" />
-                    Самовивіз
+                    {{ $t('pages.checkout.delivery.pickup') }}
                   </label>
                   <label>
                     <input v-model="deliveryType" value="courier" type="radio" />
-                    Доставка кур'єром (50 ₴)
+                    {{ $t('pages.checkout.delivery.courier') }} (50 ₴)
                   </label>
                   <label>
                     <input v-model="deliveryType" value="novapost" type="radio" />
-                    Нова пошта
+                    {{ $t('pages.checkout.delivery.novapost') }}
                   </label>
                 </div>
               </div>
               <div class="payment">
-                <div class="payment__title">Оплата</div>
+                <div class="payment__title">{{ $t('pages.checkout.payment.title') }}</div>
                 <div class="payment__options">
                   <label>
                     <input v-model="paymentType" value="cash" type="radio" />
-                    Готівкою
+                    {{ $t('pages.checkout.payment.cash') }}
                   </label>
                   <label>
                     <input v-model="paymentType" value="card-pickup" type="radio" />
-                    Карткою при отриманні
+                    {{ $t('pages.checkout.payment.cardPickup') }}
                   </label>
                   <label>
                     <input v-model="paymentType" value="card" type="radio" />
-                    Карткою
+                    {{ $t('pages.checkout.payment.card') }}
                   </label>
                 </div>
               </div>
             </div>
             <div class="summary">
               <div class="summary__body">
-                <h2 class="summary__title">Разом</h2>
+                <h2 class="summary__title">{{ $t('pages.checkout.total.title') }}</h2>
                 <div class="summary__items-count">
-                  <span>{{ cartsStore.itemsCount }} товарів на суму</span>
+                  <span
+                    >{{ cartsStore.itemsCount }} {{ $t('pages.checkout.total.itemsWithSum') }}</span
+                  >
                   <div>{{ cartsStore.totalCartSum }} ₴</div>
                 </div>
                 <div class="summary__delivery">
-                  <span>Вартість доставки</span>
+                  <span>{{ $t('pages.checkout.total.deliveryCost') }}</span>
                   <div>{{ deliveryCost }}</div>
                 </div>
                 <div class="summary__total-price">
-                  <span>До сплати</span>
+                  <span>{{ $t('pages.checkout.total.summary') }}</span>
                   <div>{{ totalSum }} ₴</div>
                 </div>
                 <button @click="onOrder" class="summary__btn primary">
-                  Замовлення підтверджую
+                  {{ $t('pages.checkout.total.btn') }}
                 </button>
               </div>
             </div>
@@ -83,10 +85,13 @@ const cartItems = computed(() => cartsStore.cartItems)
 const deliveryType = ref(null)
 const paymentType = ref(null)
 
+import { useLocales } from '@/modulesHelpers/i18n'
+const { t } = useLocales()
+
 const deliveryCost = computed(() => {
-  if (deliveryType.value === 'pickup') return 'безкоштовно'
+  if (deliveryType.value === 'pickup') return t('pages.checkout.total.free')
   if (deliveryType.value === 'courier') return '50 ₴'
-  if (deliveryType.value === 'novapost') return 'за тарифами перевізника'
+  if (deliveryType.value === 'novapost') return t('pages.checkout.total.byPostPrices')
 
   return null
 })
@@ -110,7 +115,7 @@ function onOrder() {
 
 <style lang="scss" scoped>
 .cart__items {
-  height: 400px;
+  max-height: 400px;
 }
 .checkout {
   &__body {
@@ -123,6 +128,9 @@ function onOrder() {
     gap: 32px;
 
     margin: 16px 0 0 0;
+    @media only screen and (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 .summary {

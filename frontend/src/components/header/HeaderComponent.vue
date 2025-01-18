@@ -2,6 +2,47 @@
   <header class="header">
     <div class="container">
       <div class="header__body">
+        <button
+          @click="onToggleMenu"
+          :class="[
+            'header__burger',
+            {
+              open: isMenuOpened,
+            },
+          ]"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div :class="['header__menu', { open: isMenuOpened }]">
+          <button @click="toCatalogue" class="header__menu-catalogue-btn">
+            {{ $t('header.catalogue') }}
+          </button>
+          <div class="header__menu-language">
+            <div
+              @click="((selectedLocale = 'ua'), changeLocale())"
+              :class="{ selected: selectedLocale === 'ua' }"
+            >
+              UA
+            </div>
+            <div>|</div>
+            <div
+              @click="((selectedLocale = 'en'), changeLocale())"
+              :class="{ selected: selectedLocale === 'en' }"
+            >
+              EN
+            </div>
+          </div>
+          <div @click="toProfile" class="header__menu-account">
+            <img src="@/assets/icons/account_black.svg" />
+          </div>
+          <div>content</div>
+          <div>content</div>
+          <div>content</div>
+          <div>content</div>
+          <div>content</div>
+        </div>
         <router-link to="/"
           ><div class="header__logo">
             <img src="@/assets/logo.png" /> <span>Easy Buy</span>
@@ -104,10 +145,21 @@ onMounted(() => {
 })
 
 const cartsStore = useCartsStore()
+
+const isMenuOpened = ref(false)
+function onToggleMenu() {
+  isMenuOpened.value = !isMenuOpened.value
+}
 </script>
 
 <style lang="scss" scoped>
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
   padding: 0 32px;
   background: rgb(49, 49, 49);
   @media only screen and (max-width: 990px) {
@@ -153,7 +205,8 @@ const cartsStore = useCartsStore()
     max-width: 1016px;
   }
 
-  &__catalogue-btn {
+  &__catalogue-btn,
+  &__menu-catalogue-btn {
     width: 236px;
     height: 40px;
 
@@ -174,6 +227,8 @@ const cartsStore = useCartsStore()
       display: inline-block;
       content: url('@/assets/icons/catalogue.svg');
     }
+  }
+  &__catalogue-btn {
     @media only screen and (max-width: 770px) {
       display: none;
     }
@@ -279,6 +334,82 @@ const cartsStore = useCartsStore()
         background-color: #ff4848;
         border-radius: 50%;
       }
+    }
+  }
+
+  &__burger {
+    display: none;
+    overflow: hidden;
+    position: relative;
+    background: none;
+    width: 38px;
+    height: 38px;
+    span {
+      position: absolute;
+      left: 0;
+      right: 0;
+
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      &:nth-child(1) {
+        transform: translateY(-10px);
+      }
+      &:nth-child(3) {
+        transform: translateY(10px);
+      }
+      transition: transform 0.3s ease;
+    }
+    &.open span {
+      &:nth-child(1) {
+        transform: translateY(0);
+        transform: rotate(45deg);
+      }
+      &:nth-child(2) {
+        transform: translateX(-100%);
+      }
+      &:nth-child(3) {
+        transform: translateY(0);
+        transform: rotate(-45deg);
+      }
+    }
+    @media only screen and (max-width: 990px) {
+      display: block;
+    }
+  }
+  &__menu {
+    padding: 10px;
+    display: none;
+    position: absolute;
+    left: -300px;
+    top: 72px;
+    width: 300px;
+    height: 100vh;
+
+    background-color: white;
+    transition: transform 0.3s ease;
+    &.open {
+      transform: translateX(100%);
+    }
+    &-language {
+      margin: 16px 0 0 0;
+      font-weight: 400;
+      display: flex;
+
+      div {
+        padding: 8px;
+      }
+      div.selected {
+        font-weight: 500;
+      }
+    }
+    &-account {
+      display: inline-block;
+      padding: 8px;
+    }
+    @media only screen and (max-width: 990px) {
+      display: block;
     }
   }
 }

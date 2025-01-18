@@ -33,6 +33,9 @@ onMounted(() => {
     @media only screen and (max-width: 990px) {
       grid-template-columns: repeat(2, 1fr);
     }
+    @media only screen and (max-width: 750px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 </style>

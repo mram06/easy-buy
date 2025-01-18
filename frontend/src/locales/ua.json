@@ -6,6 +6,23 @@
     "orders": "Замовлення",
     "logout": "Вихід"
   },
+  "footer": {
+    "categories": {
+      "title": "Категорії",
+      "audio": "Аудіо",
+      "photoAndVideo": "Фото і відео",
+      "smartphones": "Смартфони",
+      "householdAppliances": "Побутова техніка"
+    },
+    "client": {
+      "title": "Клієнтам",
+      "deliveryAndPayment": "Доставка і оплата",
+      "publicOffer": "Публічні оферти",
+      "specialOffers": "Акції"
+    },
+    "makeOrder": "Оформити замовлення",
+    "support": "Служба підтримки"
+  },
   "auth": {
     "login": "Увійти",
     "signup": "Зареєструватися",
@@ -15,7 +32,9 @@
     "lastname": "Прізвище"
   },
   "pages": {
-    "home": {},
+    "home": {
+      "novelty": "Новинки"
+    },
     "catalogue": {
       "breadCrumbs": "Каталог"
     },
@@ -31,8 +50,52 @@
         "descending": "за спаданням ціни",
         "ascending": "за зростанням ціни"
       },
-
+      "notFound": "За запитом нічого не знайдено :(",
       "breadCrumbs": "Каталог"
+    },
+    "product": {
+      "about": "Про товар",
+      "features": "Характеристики",
+      "btn": "Купити",
+      "inStock": "В наявності",
+      "description": "Опис товару"
+    },
+    "checkout": {
+      "title": "Оформлення замовлення",
+      "delivery": {
+        "title": "Доставка",
+        "pickup": "Самовивіз",
+        "courier": "Доставка кур'єром",
+        "novapost": "Нова пошта"
+      },
+      "payment": {
+        "title": "Оплата",
+        "cash": "Готівкою",
+        "cardPickup": "Карткою при отриманні",
+        "card": "Карткою"
+      },
+      "total": {
+        "title": "Разом",
+        "itemsWithSum": "товарів на суму",
+        "deliveryCost": "Вартість доставки",
+        "summary": "До сплати",
+        "free": "безкоштовно",
+        "byPostPrices": "за тарифами перевізника",
+        "btn": "Замовлення підтверджую"
+      }
+    },
+    "orderComplete": {
+      "title": "Дякуємо за замовлення!",
+      "reference": "Номер замовлення"
+    }
+  },
+  "components": {
+    "cart": {
+      "title": "Кошик",
+      "empty": "Кошик порожній :(",
+      "continueShopping": "Продовжити покупки",
+      "total": "Разом",
+      "makeOrder": "Оформити замовлення"
     }
   }
 }

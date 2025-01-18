@@ -15,8 +15,12 @@
     <div class="tabs">
       <div class="container">
         <div class="tabs__row">
-          <router-link :to="{ name: 'productAbout' }">Про товар <span /></router-link>
-          <router-link :to="{ name: 'productFeatures' }">Характеристики <span /></router-link>
+          <router-link :to="{ name: 'productAbout' }"
+            >{{ $t('pages.product.about') }} <span
+          /></router-link>
+          <router-link :to="{ name: 'productFeatures' }"
+            >{{ $t('pages.product.features') }} <span
+          /></router-link>
         </div>
       </div>
     </div>

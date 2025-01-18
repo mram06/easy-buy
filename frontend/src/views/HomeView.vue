@@ -60,7 +60,7 @@
             <div class="hero__banner"></div>
             <section class="goods">
               <div class="goods__body">
-                <h2 class="goods__title">Новинки</h2>
+                <h2 class="goods__title">{{ $t('pages.home.novelty') }}</h2>
                 <products-panel :goods-list="productsList" />
               </div>
             </section>
@@ -83,7 +83,7 @@ import categories from '@/constants/categories'
 import ProductsPanel from '@/components/products/ProductsPanel.vue'
 import { useRouter } from 'vue-router'
 import { computed, onMounted, ref, watch } from 'vue'
-import products from '@/constants/products'
+
 import { useProductsStore } from '@/stores/modules/productsStore'
 import { useCategoriesStore } from '@/stores/modules/categoriesStore'
 
@@ -156,8 +156,15 @@ onMounted(() => {
     height: 480px;
     border-radius: 12px;
     background:
-      url('@/assets/img/banner1.png') 0 / auto 100% no-repeat,
+      url('@/assets/img/banner1.png') 50% / auto 100% no-repeat,
       rgb(217, 217, 217);
+
+    @media only screen and (max-width: 1280px) {
+      height: 320px;
+    }
+    @media only screen and (max-width: 670px) {
+      height: 210px;
+    }
   }
 }
 .category {

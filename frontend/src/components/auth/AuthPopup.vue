@@ -112,7 +112,7 @@ async function onAuth() {
 }
 
 const errorMessage = computed(() => {
-  if (authStore.authError?.status === 404) return 'Користувача не з таким email не існує'
+  if (authStore.authError?.status === 404) return 'Користувача з таким email не існує'
   if (authStore.authError?.status === 401) return 'Неправильний email або пароль'
   return 'Помилка авторизації'
 })
