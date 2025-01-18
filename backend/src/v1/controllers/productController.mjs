@@ -1,7 +1,7 @@
 import ProductsDBService from "../models/product/ProductsDBService.mjs";
 import { validationResult } from "express-validator";
 import fs from "fs";
-const perPage = 30;
+const perPage = 20;
 
 class ProductController {
   static async getList(req, res) {
