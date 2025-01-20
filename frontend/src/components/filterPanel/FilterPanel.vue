@@ -84,7 +84,6 @@ if (route.params.id && route.params.subcategory) {
   })
   onUnmounted(() => {
     featuresStore.featuresList = []
-    console.log('unmounted')
   })
   watch(selectedFeatures, (newFeatures) => {
     const query = { ...route.query, features: newFeatures.join('/') }

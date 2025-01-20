@@ -57,24 +57,24 @@ onMounted(() => {
     productsStore.loadProductsListByCategoryId(route.params.id, route.query)
     watch(
       () => route.query,
-      (newQuery) => {
-        productsStore.loadProductsListByCategoryId(route.params.id, newQuery)
+      async (newQuery) => {
+        await productsStore.loadProductsListByCategoryId(route.params.id, newQuery)
       },
     )
   } else if (route.params.id && route.params.subcategory) {
     productsStore.loadProductsListBySubcategoryId(route.params.id, route.query)
     watch(
       () => route.query,
-      (newQuery) => {
-        productsStore.loadProductsListBySubcategoryId(route.params.id, newQuery)
+      async (newQuery) => {
+        await productsStore.loadProductsListBySubcategoryId(route.params.id, newQuery)
       },
     )
   } else {
     productsStore.loadProductsList(route.query)
     watch(
       () => route.query,
-      (newQuery) => {
-        productsStore.loadProductsList(newQuery)
+      async (newQuery) => {
+        await productsStore.loadProductsList(newQuery)
       },
     )
   }

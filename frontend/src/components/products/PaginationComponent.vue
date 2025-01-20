@@ -1,8 +1,8 @@
 <template>
-  <template v-if="totalCount > 30">
+  <template v-if="totalCount > 20">
     <div class="pagination">
       <div class="pagination__body">
-        <button @click="previousPage"><</button>
+        <button @click="previousPage"></button>
         <button
           @click="currentPage = i"
           v-for="i in totalPagesCount"
@@ -11,7 +11,7 @@
         >
           {{ i }}
         </button>
-        <button @click="nextPage">></button>
+        <button @click="nextPage"></button>
       </div>
     </div>
   </template>
@@ -28,7 +28,7 @@ const props = defineProps({
   },
 })
 
-const totalPagesCount = computed(() => Math.ceil(props.totalCount / 5))
+const totalPagesCount = computed(() => Math.ceil(props.totalCount / 20))
 
 const currentPage = ref(1)
 
@@ -46,6 +46,13 @@ function nextPage() {
   }
 }
 
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  })
+}
+
 watch(
   () => route.query.page,
   (newPage) => {
@@ -55,14 +62,15 @@ watch(
 
 watch(currentPage, (newPage) => {
   router.push({ query: { ...route.query, page: newPage } })
+  scrollToTop()
 })
 </script>
 
 <style lang="scss" scoped>
 .pagination {
-  grid-column-start: 1;
-  grid-column-end: 6;
   &__body {
+    margin: 24px 0 0 0;
+
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -76,6 +84,17 @@ watch(currentPage, (newPage) => {
       &.selected {
         border: 1px solid red;
       }
+    }
+    :first-child {
+      background:
+        url('@/assets/icons/arrow.svg') 50% no-repeat,
+        white;
+    }
+    :last-child {
+      background:
+        url('@/assets/icons/arrow.svg') 50% no-repeat,
+        white;
+      transform: rotate(180deg);
     }
   }
 }

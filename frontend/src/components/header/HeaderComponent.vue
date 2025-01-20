@@ -37,11 +37,6 @@
           <div @click="toProfile" class="header__menu-account">
             <img src="@/assets/icons/account_black.svg" />
           </div>
-          <div>content</div>
-          <div>content</div>
-          <div>content</div>
-          <div>content</div>
-          <div>content</div>
         </div>
         <router-link to="/"
           ><div class="header__logo">
