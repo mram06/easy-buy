@@ -10,6 +10,11 @@ export const useAuthStore = defineStore('auth', () => {
   const authResult = ref(null)
   const authError = ref(null)
 
+  const authPopupOpened = ref(false)
+  function openAuthPopup() {
+    authPopupOpened.value = true
+  }
+
   async function signup(userData) {
     await axios
       .post('/auth/signup', userData)
@@ -59,5 +64,14 @@ export const useAuthStore = defineStore('auth', () => {
     window.location.reload()
   }
 
-  return { authResult, authError, signup, login, loginWithCredential, logout }
+  return {
+    authResult,
+    authPopupOpened,
+    openAuthPopup,
+    authError,
+    signup,
+    login,
+    loginWithCredential,
+    logout,
+  }
 })

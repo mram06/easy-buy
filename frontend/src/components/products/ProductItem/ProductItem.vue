@@ -13,7 +13,7 @@
             <div class="item__prices-price">{{ getPriceWithSpace(good.price) }} ₴</div>
           </template>
         </div>
-        <button @click.stop @click="cartsStore.addToCart(good.id)" class="item__btn"></button>
+        <button @click.stop @click="addToCart(good.id)" class="item__btn"></button>
       </div>
     </div>
   </div>
@@ -21,7 +21,9 @@
 
 <script setup>
 import { useGeneralStore } from '@/stores/generalStore'
+import { useAuthStore } from '@/stores/modules/authStore'
 import { useCartsStore } from '@/stores/modules/cartsStore'
+import { useUsersStore } from '@/stores/modules/usersStore'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -35,8 +37,17 @@ const cartsStore = useCartsStore()
 const { getPriceWithSpace } = useGeneralStore()
 
 const router = useRouter()
+
 function toItem() {
   router.push({ name: 'productAbout', params: { id: props.good.id } })
+}
+
+const usersStore = useUsersStore()
+const authStore = useAuthStore()
+function addToCart(id) {
+  if (usersStore.user) {
+    cartsStore.addToCart(id)
+  } else authStore.openAuthPopup()
 }
 </script>
 

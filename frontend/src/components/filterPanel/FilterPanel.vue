@@ -70,6 +70,7 @@ const selectedBrands = ref([])
 
 watch(selectedBrands, (newBrands) => {
   const query = { ...route.query, brands: newBrands.join(',') }
+  delete query.page
   router.push({ path: route.path, query })
 })
 
@@ -87,6 +88,7 @@ if (route.params.id && route.params.subcategory) {
   })
   watch(selectedFeatures, (newFeatures) => {
     const query = { ...route.query, features: newFeatures.join('/') }
+    delete query.page
     router.push({ path: route.path, query })
   })
 }

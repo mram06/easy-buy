@@ -80,7 +80,7 @@
       </div>
     </div>
   </header>
-  <auth-popup v-if="authOpened" @auth-close="authOpened = false" />
+  <auth-popup v-if="authOpened" @auth-close="authStore.authPopupOpened = false" />
   <cart-popup v-if="cartOpened" @cart-close="cartOpened = false" />
 </template>
 
@@ -91,24 +91,24 @@ import { useAuthStore } from '@/stores/modules/authStore'
 import { useUsersStore } from '@/stores/modules/usersStore'
 import { useCartsStore } from '@/stores/modules/cartsStore'
 
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
 const usersStore = useUsersStore()
 
-const authOpened = ref(false)
+const authOpened = computed(() => authStore.authPopupOpened)
 const cartOpened = ref(false)
 
 const profileDropdownOpened = ref(false)
 
 function toProfile() {
   if (!usersStore.user) {
-    authOpened.value = true
+    authStore.authPopupOpened = true
   } else profileDropdownOpened.value = !profileDropdownOpened.value
 }
 function toCart() {
-  if (!usersStore.user) authOpened.value = true
+  if (!usersStore.user) authStore.authPopupOpened = true
   else {
     cartOpened.value = true
   }
